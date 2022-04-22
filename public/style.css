@@ -1,0 +1,245 @@
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/--* */
+@import url('https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Yeon Sung', cursive;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  /* background: #e8ffe8; */
+  background: linear-gradient(180deg, black, #e8ffe8);
+  overflow: hidden;
+}
+/* Tree Effect */
+.tree {
+  position: relative;
+  top: -120px;
+  width: 200px;
+  height: 200px;
+  transform-style: preserve-3d;
+  transform: rotateX(-20deg) rotateY(30deg);
+  -webkit-animation: animate 8s linear infinite;
+  animation: animate 8s linear infinite;
+}
+.tree::before {
+  content: '⭐';
+  position: absolute;
+  top: -125px;
+  left: calc(50% - 55px);
+  font-size: 5em;
+}
+@-webkit-keyframes animate {
+  0% {
+    transform: rotateX(-20deg) rotateY(360deg);
+  }
+  100% {
+    transform: rotateX(-20deg) rotateY(0deg);
+  }
+}
+@keyframes animate {
+  0% {
+    transform: rotateX(-20deg) rotateY(360deg);
+  }
+  100% {
+    transform: rotateX(-20deg) rotateY(0deg);
+  }
+}
+#decoration {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  width: 300px;
+  height: 500px;
+  z-index: 1000;
+}
+.tree div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: translateY(calc(80px * var(--j)));
+}
+.tree div.top span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #69c069, #77dd77);
+  -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  transform-origin: bottom;
+  border-bottom: 10px solid #00000019;
+  transform: rotateY(calc(90deg * var(--i))) rotateX(30deg) translateZ(115px);
+}
+.tree div.bottom span {
+  position: absolute;
+  top: 300px;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 100%;
+  background: linear-gradient(90deg, #bb4622, #df7214);
+  transform-origin: bottom;
+  border-bottom: 10px solid #00000055;
+  transform: rotateY(calc(90deg * var(--i))) translateZ(30px);
+}
+.shadow {
+  position: absolute;
+  top: -120px;
+  /* left: 0; */
+  width: 300px;
+  height: 300px;
+  background: #0000000f;
+  transform-style: preserve-3d;
+  transform: rotateX(90deg) translateZ(-500px);
+  -webkit-filter: blur(20px);
+  filter: blur(20px);
+}
+.tree div.text span {
+  position: absolute;
+  top: 300px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: bottom;
+  transform: rotateY(calc(90deg * var(--i))) translateZ(120px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  color: #ff4242;
+  font-size: 6em;
+  text-transform: uppercase;
+  line-height: 1em;
+  -webkit-text-stroke: 3px #fff;
+  font-weight: 700;
+  transform-style: preserve-3d;
+}
+.tree div.text span:nth-child(1) {
+  font-size: 5em;
+}
+.tree div.text span::before {
+  content: attr(data-text);
+  position: absolute;
+  bottom: 7px;
+  transform-origin: bottom;
+  transform: rotateX(-90deg);
+  -webkit-text-stroke: 0px #fff;
+  color: rgba(0, 0, 0, 0.1);
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
+}
+
+/* Snow Effect */
+.snow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.snow .snow1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(snow.png);
+  z-index: 1000;
+  mix-blend-mode: screen;
+  -webkit-animation: snow-animate 10s linear infinite;
+  animation: snow-animate 10s linear infinite;
+  transform: scale(1);
+}
+.snow .snow2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(snow.png);
+  z-index: 1000;
+  mix-blend-mode: screen;
+  -webkit-animation: snow-animate 5s linear infinite;
+  animation: snow-animate 5s linear infinite;
+  transform: scale(1.5);
+}
+@-webkit-keyframes snow-animate {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 506px;
+  }
+}
+@keyframes snow-animate {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 506px;
+  }
+}
+.container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s;
+}
+.container .card {
+  position: relative;
+  width: 300px;
+  height: 420px;
+  background: #fff;
+  margin: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+}
+.container .card .title h5 {
+  text-align: center;
+  background: #ff0000;
+  color: white;
+  font-size: 3rem;
+  padding: 10px;
+}
+.container .card .content {
+  position: absolute;
+  bottom: 10px;
+  padding: 20px;
+  text-align: center;
+}
+.container .card .content p {
+  color: #666;
+}
+.container .card .content a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  background: #000;
+  color: #fff;
+  border-radius: 40px;
+  text-decoration: none;
+  margin-top: 10px;
+}
+.container .card .content a {
+  background: #ff7878;
+}
+.author {
+  font-size: 0.7rem;
+}
